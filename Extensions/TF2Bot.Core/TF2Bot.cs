@@ -6,14 +6,25 @@
 
 namespace TF2Bot.Core
 {
+    using System.ComponentModel.Composition;
     using Atlantis.Net.Irc;
+    using Lantea.Common;
     using Lantea.Common.Extensibility;
     using Lantea.Common.IO;
 
     // ReSharper disable InconsistentNaming
 
+    [Module]
     public class TF2Bot : IModule
     {
+        private readonly IIoCContainer iocc;
+
+        [ImportingConstructor]
+        public TF2Bot([Import] IIoCContainer iocc)
+        {
+            this.iocc = iocc;
+        }
+
         #region Implementation of IModule
 
         public string Author
